@@ -1,0 +1,45 @@
+body {
+    text-align: center;
+}
+
+header {
+    background-color: red;
+}
+
+[role="main"] {
+    max-width: 1080px;
+    display: flex;
+    margin: auto;
+    background-color: orange;
+}
+
+.topbar {
+    display: flex;
+    flex-direction: row;
+}
+
+.user {
+    width: 30%;
+}
+
+.menu a {
+    background-color: blue;
+    padding: 20px 30px;
+}
+
+nav {
+    width: 70%;
+}
+
+nav ul {
+    display: flex;
+    flex-direction: row;
+}
+
+ul {
+    margin: 0;
+}
+
+li {
+    text-decoration: none;
+}
