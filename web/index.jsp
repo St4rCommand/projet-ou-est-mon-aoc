@@ -12,7 +12,7 @@
         <div class="topbar">
             <nav class="menu">
                 <ul>
-                    <li><a href="#">Accueil</a></li>
+                    <li><a href="#" class="link-selected">Accueil</a></li>
                     <li><a href="#">Jouer</a></li>
                     <li><a href="#">Scores</a></li>
                     <li><a href="#">Projet</a></li>
@@ -26,7 +26,7 @@
         </div>
     </header>
 
-    <div role="main">
+    <div class="box" role="main">
 
         <h2>Bonjour !</h2>
 
@@ -42,6 +42,7 @@
 
     <footer>
         <ul>
+            <li>François BRICHARD</li>
             <li>Morgane CHAPUIS</li>
             <li>Romain HUNAULT</li>
             <li>Quentin ROUSSIER</li>
