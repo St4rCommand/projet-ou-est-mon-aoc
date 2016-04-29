@@ -18,7 +18,7 @@
     </div>
 
     <div id="carte">
-
+        Carte
     </div>
 
     <button ng-click='jeuCtrl.nextI()' ng-show='jeuCtrl.afficher'>Valider</button>
