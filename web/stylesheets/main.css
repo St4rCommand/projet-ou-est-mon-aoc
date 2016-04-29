@@ -102,7 +102,7 @@ header img {
 
 .box {
     border-radius: 15px;
-    box-shadow: 0 0 8px #0C9ABE;
+    padding: 5px 15px;
 }
 
 [role="main"] {
@@ -112,7 +112,6 @@ header img {
     flex-flow: row wrap;
     margin: 15px auto;
     background-color: #ffffff;
-    padding: 5px;
 }
 
 [role="main"] > * {
