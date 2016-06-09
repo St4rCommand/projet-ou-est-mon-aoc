@@ -37,17 +37,19 @@
             </div>
         </header>
 
-        <div class="box" role="main"  ng-show="panel.isSelected(1)">
-            <div ng-include="'${pageContext.request.contextPath}/pages/accueil.jsp'"></div>
-        </div>
-        <div class="box" role="main" ng-show="panel.isSelected(2)">
-            <div ng-include="'${pageContext.request.contextPath}/pages/jeu.jsp'"></div>
-        </div>
-        <div class="box" role="main" ng-show="panel.isSelected(3)">
-            <div ng-include="'${pageContext.request.contextPath}/pages/highscores.jsp'"></div>
-        </div>
-        <div class="box" role="main" ng-show="panel.isSelected(4)">
-            <div ng-include="'${pageContext.request.contextPath}/pages/project.jsp'"></div>
+        <div role="main">
+            <div id="page-accueil" ng-show="panel.isSelected(1)">
+                <div ng-include="'${pageContext.request.contextPath}/pages/accueil.jsp'"></div>
+            </div>
+            <div id="page-jeu" ng-show="panel.isSelected(2)">
+                <div ng-include="'${pageContext.request.contextPath}/pages/jeu.jsp'"></div>
+            </div>
+            <div id="page-score" ng-show="panel.isSelected(3)">
+                <div ng-include="'${pageContext.request.contextPath}/pages/highscores.jsp'"></div>
+            </div>
+            <div id="page-projet" ng-show="panel.isSelected(4)">
+                <div ng-include="'${pageContext.request.contextPath}/pages/project.jsp'"></div>
+            </div>
         </div>
 
         <footer>
