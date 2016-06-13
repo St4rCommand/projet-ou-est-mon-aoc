@@ -4,7 +4,14 @@
     <head>
         <title>Où est mon AOC ?</title>
         <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/stylesheets/main.css"/>
+
+        <script type="text/javascript" src='${pageContext.request.contextPath}/js/lodash.js'></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/js/angular.min.js"></script>
+        <script type="text/javascript" src='${pageContext.request.contextPath}/js/angular-simple-logger.js'></script>
+        <script type="text/javascript" src='${pageContext.request.contextPath}/js/angular-google-maps.js'></script>
+        <script type="text/javascript" src='//maps.googleapis.com/maps/api/js?sensor=false&key=AIzaSyD02mO5LOSBSTcdse9bepTCis2dd0J6IRw'></script>
+
+
         <script type="text/javascript" src="${pageContext.request.contextPath}/js/app.js"></script>
     </head>
 

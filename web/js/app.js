@@ -2,7 +2,7 @@
  * Created by Morgane on 24/04/2016.
  */
 
-var app = angular.module('appli', [ ]);
+var app = angular.module('appli', ['uiGmapgoogle-maps']);
 
 app.controller('MenuController', ['$scope', function($scope){
     this.tab = 1;
@@ -16,12 +16,16 @@ app.controller('MenuController', ['$scope', function($scope){
     };
 }]);
 
+
+
 app.controller('JeuController', ['$scope', function($scope){
     this.questions = questions;
     this.afficher = false;
     this.i = 0;
     this.score = 0;
 
+    $scope.map = { center: { latitude: 45, longitude: -73 }, zoom: 8 };
+    
     this.nextI = function(){
         if(this.i != 9){
             this.i ++;

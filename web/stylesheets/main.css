@@ -141,3 +141,9 @@ header img {
 footer {
     text-align: center;
 }
+
+.angular-google-map-container {
+    margin: 16px;
+    height: 400px;
+    width: 800px;
+}

@@ -18,8 +18,10 @@
     </div>
 
     <div id="carte">
-        Carte
+        <!-- On lance la carte et le script GMaps -->
+        <ui-gmap-google-map center='map.center' zoom='map.zoom'></ui-gmap-google-map>
     </div>
+
 
     <button ng-click='jeuCtrl.nextI()' ng-show='jeuCtrl.afficher'>Valider</button>
 </div>
