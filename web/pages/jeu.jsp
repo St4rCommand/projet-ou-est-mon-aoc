@@ -6,18 +6,19 @@
   To change this template use File | Settings | File Templates.
 --%>
 
-<div class="box semi-box">
-    <h2>ça se boit ou ça se mange ?</h2>
+<div id="question-type" class="box semi-box">
+    <h2>{{jeuCtrl.questions[jeuCtrl.indexQuestion].name}}</h2>
+    <h3>ça se boit ou ça se mange ?</h3>
 
     <section class="section-question">
-        <h3>{{jeuCtrl.questions[jeuCtrl.indexQuestion].name}}</h3>
-        <button ng-click='jeuCtrl.verifReponse(1)'>Se boit</button>
-        <button ng-click='jeuCtrl.verifReponse(0)'>Se mange</button>
+        <input id="question-type-liquide" ng-model="reponse" ng-change="switchToMap()" type="radio" name="question-type" value="1"><label for="question-type-liquide">Se boit</label>
+        <input id="question-type-solide" ng-model="reponse" ng-change="switchToMap()" type="radio" name="question-type" value="0"><label for="question-type-solide">Se mange</label>
     </section>
 </div>
 
-<div class="box semi-box">
-    <h2>d'où ça vient ?</h2>
+<div id="question-position" class="box semi-box">
+    <h2>{{jeuCtrl.questions[jeuCtrl.indexQuestion].name}}</h2>
+    <h3>d'où ça vient ?</h3>
 
     <section class="section-carte">
         <img src="images/france.PNG">

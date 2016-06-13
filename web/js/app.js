@@ -20,23 +20,45 @@ app.controller('JeuController', ['$scope', function($scope){
     this.questions = questions;
     this.afficher = false;
     this.indexQuestion = 0;
-    this.score = 0;
-    this.reponses = [];//reponses;
+    this.scorePartie = 0;
+    this.reponses = [];
+    this.reponse = {};
+
+    this.switchToMap = function() {
+        console.log("je change");
+        this.verifResponse();
+    };
 
 
-    this.verifReponse = function(reponse){
+    this.verifResponse = function(){
+        console.log("je vérifie la réponse");
+
+        if(this.questions[this.indexQuestion].seBoit === this.reponse){
+            this.reponses[this.indexQuestion] += 3;
+            console.log("la réponse est correcte");
+        } else {
+            this.reponses[this.indexQuestion] += 0;
+            console.log("la réponse est incorrecte");
+        }
+        this.afficher = true;
+        this.reponse = {};
+
+
         if (this.indexQuestion < 10) {
-            if(this.questions[this.indexQuestion].seBoit === reponse){
-                this.reponses[this.indexQuestion] = "good";
-            } else {
-                this.reponses[this.indexQuestion] = "false";
-            }
-            this.indexQuestion ++;
-            this.afficher = true;
+            this.nextQuestion();
+        } else {
+            this.endGame();
         }
-        else {
-            console.log('terminé !');
-        }
+    };
+
+    this.nextQuestion = function() {
+        this.indexQuestion ++;
+    };
+
+    this.endGame = function() {
+        console.log("la partie est terminée");
+        scores.append("nouveau joueur", this.scorePartie);
+        this.scorePartie = 0;
     };
 
     this.range = function(min, max, step) {
@@ -49,7 +71,14 @@ app.controller('JeuController', ['$scope', function($scope){
     };
 
     this.afficherReponse = function (indexQuestion) {
-        return this.reponses[indexQuestion-1];
+        if (this.reponses[indexQuestion-1] === 3)
+            return "good";
+        else if (this.reponses[indexQuestion-1] === 1)
+            return "medium";
+        else if (this.reponses[indexQuestion-1] === 0)
+            return "false";
+        else
+            return "";
     }
 }]);
 
@@ -75,18 +104,5 @@ var scores = [
     { name: 'Dragibus', score : '10'},
     { name: 'Schtroumpf', score : '5'},
 ];
-
-/*var reponses = [
-    "good",
-    "false",
-    "good",
-    "false",
-    "good",
-    "false",
-    "good",
-    "false",
-    "good",
-    "false"
-];*/
 
 

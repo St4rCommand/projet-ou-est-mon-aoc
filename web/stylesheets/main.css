@@ -161,6 +161,10 @@ header img {
     background-color: red;
 }
 
+.box-score li.medium {
+    background-color: orange;
+}
+
 [role="main"] {
     min-width: 600px;
     max-width: 1080px;
@@ -216,4 +220,9 @@ footer > ul > li {
     padding: 5px;
     font-size: 13px;
     font-family: cursive;
+}
+
+/** PAGES **/
+#question-position {
+    display: none;
 }
