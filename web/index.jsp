@@ -14,6 +14,8 @@
 
         <script type="text/javascript" src="${pageContext.request.contextPath}/js/app.js"></script>
         <meta charset="UTF-8">
+        <script src="https://apis.google.com/js/platform.js"></script>
+        <meta name="google-signin-client_id" content="300070851823-kfbftgpbipvqkik31m9o4rrdht6rurfj.apps.googleusercontent.com">
     </head>
 
     <body ng-controller="MenuController as panel">
@@ -39,8 +41,7 @@
                 </nav>
 
                 <div class="user">
-                    <p>Utilisateur connecté</p>
-                    <img src="images/avatar.png" title="logo">
+                    <div class="g-signin2" data-onsuccess="onSignIn"></div>
                 </div>
             </div>
         </header>
