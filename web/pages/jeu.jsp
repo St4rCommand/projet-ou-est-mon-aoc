@@ -11,8 +11,8 @@
     <h3>ça se boit ou ça se mange ?</h3>
 
     <section class="section-question">
-        <input id="question-type-liquide" ng-model="reponse" ng-change="switchToMap()" type="radio" name="question-type" value="1"><label for="question-type-liquide">Se boit</label>
-        <input id="question-type-solide" ng-model="reponse" ng-change="switchToMap()" type="radio" name="question-type" value="0"><label for="question-type-solide">Se mange</label>
+        <input id="question-type-liquide" ng-model="reponse" ng-change="jeuCtrl.switchToMap()" type="radio" name="question-type" value="1"><label for="question-type-liquide">Se boit</label>
+        <input id="question-type-solide" ng-model="reponse" ng-change="jeuCtrl.switchToMap()" type="radio" name="question-type" value="0"><label for="question-type-solide">Se mange</label>
     </section>
 </div>
 

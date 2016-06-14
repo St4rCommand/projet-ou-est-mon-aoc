@@ -25,13 +25,11 @@ app.controller('JeuController', ['$scope', function($scope){
     this.reponse = {};
 
     this.switchToMap = function() {
-        console.log("je change");
         this.verifResponse();
     };
 
 
     this.verifResponse = function(){
-        console.log("je vérifie la réponse");
 
         if(this.questions[this.indexQuestion].seBoit === this.reponse){
             this.reponses[this.indexQuestion] += 3;
