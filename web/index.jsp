@@ -13,6 +13,7 @@
 
 
         <script type="text/javascript" src="${pageContext.request.contextPath}/js/app.js"></script>
+        <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.0.0.js"></script>
         <meta charset="UTF-8">
     </head>
 
@@ -49,8 +50,8 @@
             <div id="page-accueil" ng-show="panel.isSelected(1)">
                 <div ng-include="'${pageContext.request.contextPath}/pages/accueil.jsp'"></div>
             </div>
-            <div id="page-jeu" ng-show="panel.isSelected(2)">
-                <div ng-include="'${pageContext.request.contextPath}/pages/jeu.jsp'" ng-controller="JeuController as jeuCtrl"></div>
+            <div id="page-jeu" ng-show="panel.isSelected(2)" ng-hide="!panel.isSelected(2)" ng-controller="JeuController as jeuCtrl">
+                <div ng-include="'${pageContext.request.contextPath}/pages/jeu.jsp'" ></div>
             </div>
             <div id="page-score" ng-show="panel.isSelected(3)">
                 <div ng-include="'${pageContext.request.contextPath}/pages/highscores.jsp'"></div>

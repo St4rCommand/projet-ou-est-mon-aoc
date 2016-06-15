@@ -20,37 +20,67 @@ app.controller('MenuController', ['$scope', function($scope){
 
 app.controller('JeuController', ['$scope', function($scope){
     this.questions = questions;
-    this.afficher = false;
     this.indexQuestion = 0;
-    this.score = 0;
-    this.reponses = [];//reponses;
+    this.scorePartie = 0;
+    this.reponses = [];
+    this.reponse = {};
 
     $scope.map = { center: { latitude: 45, longitude: -73 }, zoom: 8 };
     
-    this.nextI = function(){
-        if(this.i != 9){
-            this.i ++;
-            this.afficher = false;
+    this.newGame = function() {
+        this.questions = questions;
+        this.indexQuestion = 0;
+        this.scorePartie = 0;
+        this.reponses = [];
+        this.reponse = {};
+        $('#question-type').show();
+        $('#question-position').hide();
+        $('#fin-partie').hide();
+    };
+    
+    this.displayMap = function() {
+        $('#question-type').hide();
+        $('#question-position').show();
+    };
+
+    this.score = function() {
+        return this.indexQuestion+1;
+    };
+
+    this.verifResponse = function(){
+
+        if(this.questions[this.indexQuestion].seBoit === parseInt(this.reponse.seBoit)){
+            this.reponses[this.indexQuestion] = 3;
+        } else {
+            this.reponses[this.indexQuestion] = 0;
         }
-        else{
-            this.etat = 2;
-            this.submit();
+
+        if (this.indexQuestion < 9) {
+            this.nextQuestion();
+        } else {
+            this.endGame();
         }
     };
 
-    this.verifReponse = function(reponse){
-        if (this.indexQuestion < 10) {
-            if(this.questions[this.indexQuestion].seBoit === reponse){
-                this.reponses[this.indexQuestion] = "good";
-            } else {
-                this.reponses[this.indexQuestion] = "false";
-            }
-            this.indexQuestion ++;
-            this.afficher = true;
-        }
-        else {
-            console.log('terminé !');
-        }
+    this.nextQuestion = function() {
+        $('#question-position').hide();
+        $('#question-type').show();
+        this.indexQuestion ++;
+        this.reponse = {};
+    };
+
+    this.endGame = function() {
+        scores.push({name: "nouveau joueur", score: this.getScore()});
+        $('#question-position').hide();
+        $('#fin-partie').show();
+    };
+
+    this.getScore = function() {
+        var totalScore = 0;
+        this.reponses.forEach(function(reponse) {
+            totalScore += reponse;
+        });
+        return totalScore;
     };
 
     this.range = function(min, max, step) {
@@ -63,7 +93,15 @@ app.controller('JeuController', ['$scope', function($scope){
     };
 
     this.afficherReponse = function (indexQuestion) {
-        return this.reponses[indexQuestion-1];
+
+        if (this.reponses[indexQuestion-1] === 3)
+            return "good";
+        else if (this.reponses[indexQuestion-1] === 1)
+            return "medium";
+        else if (this.reponses[indexQuestion-1] === 0)
+            return "false";
+        else
+            return "";
     }
 }]);
 
@@ -89,18 +127,5 @@ var scores = [
     { name: 'Dragibus', score : '10'},
     { name: 'Schtroumpf', score : '5'},
 ];
-
-/*var reponses = [
-    "good",
-    "false",
-    "good",
-    "false",
-    "good",
-    "false",
-    "good",
-    "false",
-    "good",
-    "false"
-];*/
 
 
