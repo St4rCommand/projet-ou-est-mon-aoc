@@ -10,7 +10,7 @@
 
     <body ng-controller="MenuController as panel">
         <header role="banner">
-            <h1>Où est mon AOC ? {{Tto}}</h1>
+            <h1><a href="index.jsp">Où est mon AOC ? {{Tto}}</a></h1>
 
             <div class="topbar">
                 <nav class="menu">
