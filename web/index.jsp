@@ -6,6 +6,7 @@
         <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/stylesheets/main.css"/>
         <script type="text/javascript" src="${pageContext.request.contextPath}/js/angular.min.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/js/app.js"></script>
+        <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.0.0.js"></script>
         <meta charset="UTF-8">
     </head>
 

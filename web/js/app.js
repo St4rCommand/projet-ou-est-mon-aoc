@@ -18,31 +18,40 @@ app.controller('MenuController', ['$scope', function($scope){
 
 app.controller('JeuController', ['$scope', function($scope){
     this.questions = questions;
-    this.afficher = false;
     this.indexQuestion = 0;
     this.scorePartie = 0;
     this.reponses = [];
     this.reponse = {};
 
-    this.switchToMap = function() {
-        this.verifResponse();
+    this.newGame = function() {
+        this.questions = questions;
+        this.indexQuestion = 0;
+        this.scorePartie = 0;
+        this.reponses = [];
+        this.reponse = {};
+        $('#question-type').show();
+        $('#question-position').hide();
+        $('#fin-partie').hide();
+    };
+    
+    this.displayMap = function() {
+        $('#question-type').hide();
+        $('#question-position').show();
     };
 
+    this.score = function() {
+        return this.indexQuestion+1;
+    };
 
     this.verifResponse = function(){
 
-        if(this.questions[this.indexQuestion].seBoit === this.reponse){
-            this.reponses[this.indexQuestion] += 3;
-            console.log("la réponse est correcte");
+        if(this.questions[this.indexQuestion].seBoit === parseInt(this.reponse.seBoit)){
+            this.reponses[this.indexQuestion] = 3;
         } else {
-            this.reponses[this.indexQuestion] += 0;
-            console.log("la réponse est incorrecte");
+            this.reponses[this.indexQuestion] = 0;
         }
-        this.afficher = true;
-        this.reponse = {};
 
-
-        if (this.indexQuestion < 10) {
+        if (this.indexQuestion < 9) {
             this.nextQuestion();
         } else {
             this.endGame();
@@ -50,13 +59,24 @@ app.controller('JeuController', ['$scope', function($scope){
     };
 
     this.nextQuestion = function() {
+        $('#question-position').hide();
+        $('#question-type').show();
         this.indexQuestion ++;
+        this.reponse = {};
     };
 
     this.endGame = function() {
-        console.log("la partie est terminée");
-        scores.append("nouveau joueur", this.scorePartie);
-        this.scorePartie = 0;
+        scores.push({name: "nouveau joueur", score: this.getScore()});
+        $('#question-position').hide();
+        $('#fin-partie').show();
+    };
+
+    this.getScore = function() {
+        var totalScore = 0;
+        this.reponses.forEach(function(reponse) {
+            totalScore += reponse;
+        });
+        return totalScore;
     };
 
     this.range = function(min, max, step) {
@@ -69,6 +89,7 @@ app.controller('JeuController', ['$scope', function($scope){
     };
 
     this.afficherReponse = function (indexQuestion) {
+
         if (this.reponses[indexQuestion-1] === 3)
             return "good";
         else if (this.reponses[indexQuestion-1] === 1)
