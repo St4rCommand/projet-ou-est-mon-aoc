@@ -6,20 +6,24 @@
   To change this template use File | Settings | File Templates.
 --%>
 
-<div class="section-2-3" ng-controller="JeuController as jeuCtrl">
-    <h1>{{jeuCtrl.questions[jeuCtrl.i].name}}</h1>
+<div class="box semi-box">
+    <h2>ça se boit ou ça se mange ?</h2>
 
-    <div>Votre score : {{jeuCtrl.score}}</div>
-
-    <div id="question">
-        <p>ça se boit ou ça se mange ?</p>
+    <section class="section-question">
+        <h3>{{jeuCtrl.questions[jeuCtrl.indexQuestion].name}}</h3>
         <button ng-click='jeuCtrl.verifReponse(1)'>Se boit</button>
         <button ng-click='jeuCtrl.verifReponse(0)'>Se mange</button>
-    </div>
-
-    <div id="carte">
-
-    </div>
-
-    <button ng-click='jeuCtrl.nextI()' ng-show='jeuCtrl.afficher'>Valider</button>
+    </section>
 </div>
+
+<div class="box semi-box">
+    <h2>d'où ça vient ?</h2>
+
+    <section id="carte" class="section-carte">
+        <ui-gmap-google-map center='map.center' zoom='map.zoom'></ui-gmap-google-map>
+    </section>
+</div>
+
+<ul class="box box-score">
+    <li ng-repeat="n in jeuCtrl.range(1,10)" ng-class="jeuCtrl.afficherReponse({{n}})">{{n}}</li>
+</ul>
