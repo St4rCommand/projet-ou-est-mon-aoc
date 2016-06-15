@@ -38,8 +38,11 @@ header {
 header h1 {
     margin: 0 auto;
     padding: 15px;
-    color : white;
     width: 30%;
+}
+
+header h1 > a{
+    color : white !important;
 }
 
 header .topbar {
@@ -116,8 +119,9 @@ header img {
     margin: auto;
     background-color: #650418;
     color: #ffffff;
-    padding: 10px 15px;
-    border-radius: 40px;
+    padding: 30px 50px;
+    border-radius: 30px;
+    font-size:20px;
 }
 
 .side-box{
