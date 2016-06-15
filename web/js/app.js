@@ -17,12 +17,30 @@ app.controller('MenuController', ['$scope', function($scope){
 }]);
 
 app.controller('JeuController', ['$scope', function($scope){
-    this.questions = questions;
+   
+	this.questions = questions;
     this.afficher = false;
     this.indexQuestion = 0;
     this.scorePartie = 0;
     this.reponses = [];
     this.reponse = {};
+	
+    $scope.$watch('panel.isSelected(2)', function(newValue, oldValue) {
+        console.log('changed!');
+    	
+    	if (newValue === true) {
+    		console.log('arrive');
+    		
+        	this.questions = questions;
+            this.afficher = false;
+            this.indexQuestion = 0;
+            this.scorePartie = 0;
+            this.reponses = [];
+            this.reponse = {};
+            $scope.$apply();
+            console.log(this.questions[this.indexQuestion]);
+        }
+    }, true);
 
     this.switchToMap = function() {
         this.verifResponse();
