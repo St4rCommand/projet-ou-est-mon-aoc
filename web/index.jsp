@@ -43,16 +43,14 @@
 
                 <div class="user" ng-controller="UserController as user">
                     <div ng-show="!user.isLogged" class="g-signin2" data-onsuccess="onSignIn" ng-click="user.signIn()"></div>
-                    <table ng-show="user.isLogged">
-                        <td ><img src="{{user.userImg}}"/></td>
-                        <td >{{user.userName}}</td>
-                        <td >
-                            <div id="customBtn" ng-click="user.signOut()">
-                                <span class="icon"><img src="/images/g-logo.png"></span>
-                                <span class="buttonText">Sign Out</span>
-                            </div>
-                        </td>
-                    </table>
+                    <div ng-show="user.isLogged">
+                        <img src="#" ng-src="{{user.getUser().userImg}}"/>
+                        <p>{{user.getUser().userName}}</p>
+                        <div id="customBtn" ng-click="user.signOut()">
+                            <span class="icon"><img src="/images/g-logo.png"></span>
+                            <span class="buttonText">Sign Out</span>
+                        </div>
+                    </div>
 
                 </div>
             </div>

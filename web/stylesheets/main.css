@@ -99,6 +99,15 @@ header img {
     max-height: 60px;
 }
 
+.user > * {
+    display: flex;
+    flex-direction: row;
+}
+
+.user * {
+    margin: auto;
+}
+
 
 
 /** BODY **/

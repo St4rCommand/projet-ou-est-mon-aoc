@@ -16,7 +16,7 @@ app.controller('MenuController', ['$scope', function($scope){
     };
 }]);
 
-app.controller('JeuController', ['$scope', function($scope){
+app.controller('JeuController', ['$scope', 'UserService', function($scope, user){
     this.questions = questions;
     this.indexQuestion = 0;
     this.scorePartie = 0;
@@ -68,7 +68,7 @@ app.controller('JeuController', ['$scope', function($scope){
     };
 
     this.endGame = function() {
-        scores.push({name: "nouveau joueur", score: this.getScore()});
+        scores.push({name: user.userName, score: this.getScore()});
         $('#question-position').hide();
         $('#fin-partie').show();
     };
@@ -107,28 +107,46 @@ app.controller('ScoreController', ['$scope', function($scope){
     this.highScores = scores;
 }]);
 
-app.controller('UserController', ['$scope', function($scope){
+app.controller('UserController', ['$scope', 'UserService', function($scope, user){
     this.isLogged = false;
-    this.userName = "";
-    this.userImg = "";
 
     this.signOut = function () {
-        this.isLogged = false;
         var auth2 = gapi.auth2.getAuthInstance();
         auth2.signOut();
+        user.initUser();
+        this.isLogged = false;
     };
 
     this.signIn = function() {
-        this.isLogged = true;
         var auth2 = gapi.auth2.getAuthInstance();
-        var profile = auth2.currentUser.get().getBasicProfile();
-        this.userName = profile.getGivenName();
-        this.userImg = profile.getImageUrl();
+        user.setUser(auth2.currentUser.get().getBasicProfile());
+        this.isLogged = true;
+    };
+
+    this.getUser = function () {
+        return user;
+    }
+}]);
+
+app.service('UserService', function() {
+    this.user = {};
+    this.userName = "Anonyme";
+    this.userImg = "";
+
+    this.setUser = function (user) {
+        this.userName = user.getGivenName();
+        this.userImg = user.getImageUrl();
         if(this.userImg == null){
             this.userImg = '/images/avatar.png';
         }
     };
-}]);
+
+    this.initUser = function() {
+        this.user = {};
+        this.userName = "Anonyme";
+        this.userImg = "";
+    }
+})
 
 var questions = [
     { name: "Le Camembert", seBoit: 0,  geo: "42.5,27.2" },
