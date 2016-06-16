@@ -23,8 +23,25 @@ app.controller('JeuController', ['$scope', 'UserService', function($scope, user)
     this.reponses = [];
     this.reponse = {};
 
-    $scope.map = { center: { latitude: 45, longitude: -73 }, zoom: 8 };
-    
+    $scope.map = {
+        center: { latitude: 45, longitude: -73 },
+        zoom: 8,
+        events: {
+            click: function(map, e, args) {
+                placeMarkerAndPanTo(args.latLng, map);
+            }
+        }
+    };
+
+    function placeMarkerAndPanTo(latLng, map) {
+        var marker = new google.maps.Marker({
+            position: latLng,
+            map: map
+        });
+        map.panTo(latLng);
+    }
+
+
     this.newGame = function() {
         this.questions = questions;
         this.indexQuestion = 0;
