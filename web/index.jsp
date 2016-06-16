@@ -4,17 +4,19 @@
     <head>
         <title>Où est mon AOC ?</title>
         <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/stylesheets/main.css"/>
+        <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/stylesheets/connexion.css"/>
 
         <script type="text/javascript" src='${pageContext.request.contextPath}/js/lodash.js'></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/js/angular.min.js"></script>
         <script type="text/javascript" src='${pageContext.request.contextPath}/js/angular-simple-logger.js'></script>
         <script type="text/javascript" src='${pageContext.request.contextPath}/js/angular-google-maps.js'></script>
+        <script src="https://apis.google.com/js/platform.js" async defer></script>
         <script type="text/javascript" src='//maps.googleapis.com/maps/api/js?sensor=false&key=AIzaSyD02mO5LOSBSTcdse9bepTCis2dd0J6IRw'></script>
-
-
         <script type="text/javascript" src="${pageContext.request.contextPath}/js/app.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.0.0.js"></script>
         <meta charset="UTF-8">
+        <script src="https://apis.google.com/js/platform.js"></script>
+        <meta name="google-signin-client_id" content="300070851823-kfbftgpbipvqkik31m9o4rrdht6rurfj.apps.googleusercontent.com">
     </head>
 
     <body ng-controller="MenuController as panel">
@@ -39,9 +41,19 @@
                     </ul>
                 </nav>
 
-                <div class="user">
-                    <p>Utilisateur connecté</p>
-                    <img src="images/avatar.png" title="logo">
+                <div class="user" ng-controller="UserController as user">
+                    <div ng-show="!user.isLogged" class="g-signin2" data-onsuccess="onSignIn" ng-click="user.signIn()"></div>
+                    <table ng-show="user.isLogged">
+                        <td ><img src="{{user.userImg}}"/></td>
+                        <td >{{user.userName}}</td>
+                        <td >
+                            <div id="customBtn" ng-click="user.signOut()">
+                                <span class="icon"><img src="/images/g-logo.png"></span>
+                                <span class="buttonText">Sign Out</span>
+                            </div>
+                        </td>
+                    </table>
+
                 </div>
             </div>
         </header>

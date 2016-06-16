@@ -16,8 +16,6 @@ app.controller('MenuController', ['$scope', function($scope){
     };
 }]);
 
-
-
 app.controller('JeuController', ['$scope', function($scope){
     this.questions = questions;
     this.indexQuestion = 0;
@@ -107,6 +105,29 @@ app.controller('JeuController', ['$scope', function($scope){
 
 app.controller('ScoreController', ['$scope', function($scope){
     this.highScores = scores;
+}]);
+
+app.controller('UserController', ['$scope', function($scope){
+    this.isLogged = false;
+    this.userName = "";
+    this.userImg = "";
+
+    this.signOut = function () {
+        this.isLogged = false;
+        var auth2 = gapi.auth2.getAuthInstance();
+        auth2.signOut();
+    };
+
+    this.signIn = function() {
+        this.isLogged = true;
+        var auth2 = gapi.auth2.getAuthInstance();
+        var profile = auth2.currentUser.get().getBasicProfile();
+        this.userName = profile.getGivenName();
+        this.userImg = profile.getImageUrl();
+        if(this.userImg == null){
+            this.userImg = '/images/avatar.png';
+        }
+    };
 }]);
 
 var questions = [
