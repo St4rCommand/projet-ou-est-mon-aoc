@@ -25,8 +25,73 @@ app.controller('JeuController', ['$scope', function($scope){
     this.score = 0;
     this.reponses = [];//reponses;
 
-    $scope.map = { center: { latitude: 45, longitude: -73 }, zoom: 8 };
-    
+    //initMap();
+    $scope.map = {
+        center: {latitude: 46.989984, longitude: 3.155308},
+        zoom: 6,
+        events: {
+            click: function (map, eventName, originalEventArgs) {
+                var eventName = originalEventArgs[0];
+                var lat = eventName.latLng.lat();
+                var lng = eventName.latLng.lng();
+                var marker = {
+                    id: Date.now(),
+                    coords: {latitude: lat, longitude: lng}
+                };
+
+                $scope.locationAnswer = {lat: lat, lng: lng};
+                //$scope.map.markers.pop();
+                //$scope.map.markers.push(marker);
+                $scope.$apply();
+            }
+        }
+    };
+
+     // Cache l'ensemble des labels inutiles
+     var styles = [
+         {
+            featureType: "administrative",
+            elementType: "labels",
+            stylers: [
+                { visibility: "off" }
+            ]
+        },{
+            featureType: "poi",
+            elementType: "labels",
+            stylers: [
+                { visibility: "off" }
+            ]
+        },{
+            featureType: "water",
+            elementType: "labels",
+            stylers: [
+                { visibility: "off" }
+            ]
+        },{
+            featureType: "road",
+            stylers: [
+                { visibility: "off" }
+            ]
+        }
+     ];
+
+     // Bloque la map
+     $scope.map.options = {
+        scrollwheel: false,
+        disableDefaultUI: true,
+        disableDoubleClickZoom: true,
+        draggable: false,
+        styles: styles
+    };
+
+    function placeMarkerAndPanTo(latLng, map) {
+        var marker = new google.maps.Marker({
+            position: latLng,
+            map: map
+        });
+        map.panTo(latLng);
+    }
+
     this.nextI = function(){
         if(this.i != 9){
             this.i ++;

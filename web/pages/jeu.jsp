@@ -20,7 +20,7 @@
     <h2>d'où ça vient ?</h2>
 
     <section id="carte" class="section-carte">
-        <ui-gmap-google-map center='map.center' zoom='map.zoom'></ui-gmap-google-map>
+        <ui-gmap-google-map center='map.center' ng-click="jeuCtrl.verifResponse()" events="map.events" zoom='map.zoom'></ui-gmap-google-map>
     </section>
 </div>
 
