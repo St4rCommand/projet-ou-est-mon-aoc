@@ -122,6 +122,20 @@ app.controller('JeuController', ['$scope', 'UserService', function($scope, user)
 
 app.controller('ScoreController', ['$scope', function($scope){
     this.highScores = scores;
+
+    this.getHighScores = function(){
+        var rootApi = 'https://1-dot-ou-est-mon-aoc.appspot.com/_ah/api/';
+        gapi.client.load('scoreentityendpoint', 'v1', function() {
+            gapi.client.scoreentityendpoint.listScoreEntity("", 10).execute(
+                function(resp) {
+                    this.highScores=resp.items;
+                    $scope.$apply();
+                });
+        }, rootApi);
+    };
+    this.getHighScores();
+
+
 }]);
 
 app.controller('UserController', ['$scope', 'UserService', function($scope, user){
@@ -152,6 +166,9 @@ app.service('UserService', function() {
 
     this.setUser = function (user) {
         this.userName = user.getGivenName();
+        if(this.userName == null){
+            this.userName = user.getEmail();
+        }
         this.userImg = user.getImageUrl();
         if(this.userImg == null){
             this.userImg = '/images/avatar.png';

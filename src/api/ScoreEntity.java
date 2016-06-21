@@ -1,3 +1,11 @@
+package api;
+
+import javax.jdo.annotations.IdGeneratorStrategy;
+import javax.jdo.annotations.IdentityType;
+import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.Persistent;
+import javax.jdo.annotations.PrimaryKey;
+
 @PersistenceCapable(identityType=IdentityType.APPLICATION)
 public class ScoreEntity{
     @PrimaryKey
@@ -21,12 +29,12 @@ public class ScoreEntity{
         this.id = id;
     }
 
-    public String getPseudo() {
-        return pseudo;
+    public String getName() {
+        return name;
     }
 
-    public void setPseudo(String pseudo) {
-        this.pseudo = pseudo;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getEmail() {
