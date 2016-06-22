@@ -28,3 +28,8 @@
     <h3>Tableau des meilleurs scores</h3>
 </div>
 
+<%--<div class="background">
+    <div class="box score-final">
+        <h1>Votre score :</h1>
+    </div>
+</div>--%>
