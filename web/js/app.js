@@ -86,9 +86,9 @@ app.controller('JeuController', ['$scope', 'UserService', function($scope, user)
 
     this.endGame = function() {
         // scores.push({name: user.userName, score: this.getScore()});
-
+        var rootApi = 'https://ou-est-mon-aoc.appspot.com/_ah/api';
         gapi.client.load('scoreentityendpoint', 'v1', function() {
-            gapi.client.scoreentityendpoint.insertScoreEntity({"email": user.userName, "score" : getScore()}, 10).execute(
+            gapi.client.scoreentityendpoint.insertScoreEntity({"name": user.userName, "email": user.userMail, "score" : getScore()}).execute(
                 function(resp) {
                     $scope.highScores=resp.items;
                     $scope.$apply();
@@ -133,7 +133,7 @@ app.controller('JeuController', ['$scope', 'UserService', function($scope, user)
 app.controller('ScoreController', ['$scope', '$window', function($scope, $window){
 
     this.getHighScores = function(){
-        var rootApi = 'http://localhost:8080/_ah/api/';
+        var rootApi = 'http://localhost:8080/_ah/api/explorer/';
         gapi.client.load('scoreentityendpoint', 'v1', function() {
             gapi.client.scoreentityendpoint.listScoreEntity("", 10).execute(
                 function(resp) {
@@ -173,9 +173,11 @@ app.service('UserService', function() {
     this.user = {};
     this.userName = "Anonyme";
     this.userImg = "";
+    this.userMail = "";
 
     this.setUser = function (user) {
         this.userName = user.getGivenName();
+        this.userMail = user.getEmail();
         if(this.userName == null){
             this.userName = user.getEmail();
         }
@@ -189,6 +191,7 @@ app.service('UserService', function() {
         this.user = {};
         this.userName = "Anonyme";
         this.userImg = "";
+        this.userMail = "";
     }
 })
 
@@ -205,10 +208,10 @@ var questions = [
     { name: "Le Coulaines", seBoit: 1,  geo: "42.5,27.2" },
 ];
 
-var scores = [
+/*var scores = [
     { name: 'Tagada', score : '8'},
     { name: 'Dragibus', score : '10'},
     { name: 'Schtroumpf', score : '5'},
-];
+];*/
 
 
