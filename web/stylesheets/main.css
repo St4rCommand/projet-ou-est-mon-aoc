@@ -203,6 +203,9 @@ header img {
     justify-content: space-between;
 }
 
+.section-question label{
+    padding: 15px 18px;
+}
 
 .section-question div{
     width: 15%;
@@ -228,6 +231,20 @@ header img {
 
 .section-question input{
     display: none;
+}
+
+/**CARTE**/
+.question-position{
+    height: 750px;
+}
+
+.section-carte {
+    text-align: -webkit-center;
+}
+
+.section-carte .angular-google-map-container{
+    height: 580px;
+    width: 700px;
 }
 
 /** FOOTER **/

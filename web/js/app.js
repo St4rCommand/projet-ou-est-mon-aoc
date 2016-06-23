@@ -22,16 +22,18 @@ app.controller('JeuController', ['$scope', 'UserService', function($scope, user)
     this.scorePartie = 0;
     this.reponses = [];
     this.reponse = {};
+    this.etat = 0;
 
     $scope.map = {
-        center: { latitude: 45, longitude: -73 },
-        zoom: 8,
+        center: { latitude: 46.5, longitude: 2.646806 },
+        zoom: 6,
         events: {
             click: function(map, e, args) {
-                placeMarkerAndPanTo(args.latLng, map);
+                placeMarkerAndPanTo(args[0].latLng, map);
             }
         }
     };
+
 
     function placeMarkerAndPanTo(latLng, map) {
         var marker = new google.maps.Marker({
@@ -48,14 +50,16 @@ app.controller('JeuController', ['$scope', 'UserService', function($scope, user)
         this.scorePartie = 0;
         this.reponses = [];
         this.reponse = {};
-        $('#question-type').show();
-        $('#question-position').hide();
-        $('#fin-partie').hide();
+        this.etat = 0;
+        //$('#question-type').show();
+        //$('#question-position').hide();
+        //$('#fin-partie').hide();
     };
     
     this.displayMap = function() {
-        $('#question-type').hide();
-        $('#question-position').show();
+        this.etat = 1;
+        //$('#question-type').hide();
+        //$('#question-position').show();
     };
 
     this.score = function() {
@@ -78,16 +82,18 @@ app.controller('JeuController', ['$scope', 'UserService', function($scope, user)
     };
 
     this.nextQuestion = function() {
-        $('#question-position').hide();
-        $('#question-type').show();
+        this.etat = 0;
+        //$('#question-position').hide();
+        //$('#question-type').show();
         this.indexQuestion ++;
         this.reponse = {};
     };
 
     this.endGame = function() {
+        this.etat = 2;
         scores.push({name: user.userName, score: this.getScore()});
-        $('#question-position').hide();
-        $('#fin-partie').show();
+        //$('#question-position').hide();
+        //$('#fin-partie').show();
     };
 
     this.getScore = function() {
