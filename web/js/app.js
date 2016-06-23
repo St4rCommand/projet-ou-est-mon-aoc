@@ -1,7 +1,3 @@
-/**
- * Created by Morgane on 24/04/2016.
- */
-
 var app = angular.module('appli', ['uiGmapgoogle-maps']);
 
 app.controller('MenuController', ['$scope', function($scope){
@@ -16,17 +12,19 @@ app.controller('MenuController', ['$scope', function($scope){
     };
 }]);
 
-app.controller('JeuController', ['$scope', 'UserService', function($scope, user){
+app.controller('JeuController', ['$scope', 'UserService', function($scope, uiGmapGoogleMapApi, user){
     this.questions = questions;
     this.indexQuestion = 0;
     this.scorePartie = 0;
     this.reponses = [];
     this.reponse = {};
 
-    //initMap();
     $scope.map = {
-        center: {latitude: 46.989984, longitude: 3.155308},
-        zoom: 6,
+        center: {
+            latitude: 46.5132, //Position initial de la carte
+            longitude: 0.1033
+        },
+        zoom: 11, // de 0 à 19, 0 étant la valeur de zoom la plus forte,
         events: {
             click: function (map, eventName, originalEventArgs) {
                 var eventName = originalEventArgs[0];
@@ -45,9 +43,8 @@ app.controller('JeuController', ['$scope', 'UserService', function($scope, user)
         }
     };
 
-     // Cache l'ensemble des labels inutiles
-     var styles = [
-         {
+    var styles = [
+        {
             featureType: "administrative",
             elementType: "labels",
             stylers: [
@@ -71,10 +68,9 @@ app.controller('JeuController', ['$scope', 'UserService', function($scope, user)
                 { visibility: "off" }
             ]
         }
-     ];
+    ];
 
-     // Bloque la map
-     $scope.map.options = {
+    $scope.map.options = {
         scrollwheel: false,
         disableDefaultUI: true,
         disableDoubleClickZoom: true,
@@ -82,7 +78,7 @@ app.controller('JeuController', ['$scope', 'UserService', function($scope, user)
         styles: styles
     };
 
-    function placeMarkerAndPanTo(latLng, map) {
+    $scope.clickMap = function (latLng, map) {
         var marker = new google.maps.Marker({
             position: latLng,
             map: map
@@ -100,14 +96,6 @@ app.controller('JeuController', ['$scope', 'UserService', function($scope, user)
             this.submit();
         }
     };
-
-    function placeMarkerAndPanTo(latLng, map) {
-        var marker = new google.maps.Marker({
-            position: latLng,
-            map: map
-        });
-        map.panTo(latLng);
-    }
 
 
     this.newGame = function() {

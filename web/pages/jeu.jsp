@@ -21,8 +21,7 @@
     <h3>d'où ça vient ?</h3>
 
     <section id="carte" class="section-carte">
-        <ui-gmap-google-map center='map.center' ng-click="jeuCtrl.verifResponse()" events="map.events" zoom='map.zoom'></ui-gmap-google-map>
-        <%--<img src="images/france.PNG" ng-click="jeuCtrl.verifResponse()" >--%>
+        <ui-gmap-google-map click="clickMap" ng-click="jeuCtrl.verifResponse()" center='map.center' zoom='map.zoom' events="map.events" ></ui-gmap-google-map>
     </section>
 </div>
 

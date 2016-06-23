@@ -290,8 +290,13 @@ a.type:active {
     background-color: orange;
 }
 
+#question-position {
+    height: 600px;
+}
+
+.angular-google-map,
 .angular-google-map-container {
     margin: 16px;
     height: 400px;
-    width: 94%;
+    width: 400px;
 }

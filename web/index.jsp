@@ -12,7 +12,7 @@
         <script type="text/javascript" src='${pageContext.request.contextPath}/js/angular-simple-logger.js'></script>
         <script type="text/javascript" src='${pageContext.request.contextPath}/js/angular-google-maps.js'></script>
         <script src="https://apis.google.com/js/platform.js" async defer></script>
-        <script type="text/javascript" src='//maps.googleapis.com/maps/api/js?sensor=false&key=AIzaSyD02mO5LOSBSTcdse9bepTCis2dd0J6IRw'></script>
+        <script type="text/javascript" src='http://maps.googleapis.com/maps/api/js?sensor=false&key=AIzaSyD02mO5LOSBSTcdse9bepTCis2dd0J6IRw'></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/js/app.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.0.0.js"></script>
 
