@@ -12,7 +12,7 @@ app.controller('MenuController', ['$scope', function($scope){
     };
 }]);
 
-app.controller('JeuController', ['$scope', 'UserService', function($scope, uiGmapGoogleMapApi, user){
+app.controller('JeuController', ['$scope', 'UserService', function($scope, user, uiGmapGoogleMapApi){
     this.questions = questions;
     this.indexQuestion = 0;
     this.scorePartie = 0;
