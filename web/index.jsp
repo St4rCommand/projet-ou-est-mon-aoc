@@ -1,5 +1,4 @@
-﻿
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr" ng-app="appli">
     <head>
         <title>Où est mon AOC ?</title>
@@ -18,6 +17,7 @@
 
         <meta charset="UTF-8">
         <script src="https://apis.google.com/js/platform.js"></script>
+        <script src="https://apis.google.com/js/client.js?onload=init"></script>
         <meta name="google-signin-client_id" content="300070851823-kfbftgpbipvqkik31m9o4rrdht6rurfj.apps.googleusercontent.com">
     </head>
 
@@ -84,3 +84,5 @@
         </footer>
     </body>
 </html>
+
+<script src="https://apis.google.com/js/client.js?onload=init"></script>
