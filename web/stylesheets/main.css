@@ -204,7 +204,7 @@ header img {
 }
 
 .section-question label{
-    padding: 15px 18px;
+    padding: 22px 18px;
 }
 
 .section-question div{
@@ -235,7 +235,7 @@ header img {
 
 /**CARTE**/
 .question-position{
-    height: 750px;
+    height: 850px;
 }
 
 .section-carte {
@@ -245,6 +245,36 @@ header img {
 .section-carte .angular-google-map-container{
     height: 580px;
     width: 700px;
+}
+
+.section-carte label{
+    padding: 22px 30px;
+}
+
+.section-carte .bouton{
+    width: 15%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+    border-color: #650418;
+    border-width: 2px;
+    border-style: solid;
+    color: #650418;
+    border-radius: 40px;
+    margin-bottom: 30px;
+    font-weight: bold;
+}
+
+.section-carte .bouton:hover{
+    background-color: #650418;
+    color: #ffffff;
+    transition-property: background-color;
+    transition-duration: 0.1s;
+    transition-timing-function: ease;
+}
+
+.section-carte input{
+    display: none;
 }
 
 /** FOOTER **/
@@ -299,8 +329,8 @@ a.type:active {
 }
 
 /** PAGES **/
-#question-position,
-#fin-partie {
+#question-position
+{
     display: none;
 }
 
@@ -342,6 +372,29 @@ a.type:active {
     margin: 16px;
     height: 400px;
     width: 800px;
+}
+
+.btnewpartie{
+    width: 15%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+    border-color: #650418;
+    border-width: 2px;
+    border-style: solid;
+    color: #650418;
+    border-radius: 40px;
+    margin-bottom: 30px;
+    font-weight: bold;
+    background-color: #ffffff;
+}
+
+.btnewpartie:hover{
+    background-color: #650418;
+    color: #ffffff;
+    transition-property: background-color;
+    transition-duration: 0.1s;
+    transition-timing-function: ease;
 }
 
 /** POP-UP SCORE FINAL

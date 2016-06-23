@@ -22,7 +22,9 @@
 
     <section id="carte" class="section-carte">
         <ui-gmap-google-map center='map.center'  events="map.events" zoom='map.zoom' ></ui-gmap-google-map>
-        <%--<img src="images/france.PNG" ng-click="jeuCtrl.verifResponse()" >--%>
+        <input type="hidden" name="lat" value="{{$scope.lat}}">
+        <input type="hidden" name="long" value="{{$scope.long}}">
+        <div class="bouton"><input id="valider" class="type" ng-click="jeuCtrl.verifResponse(j)" type="radio" ><label for="valider">Valider</label></div>
     </section>
 </div>
 
@@ -30,7 +32,7 @@
     <h2>Fin de la partie !</h2>
     <p>Votre score : <span>{{jeuCtrl.getScore()}}</span></p>
 
-    <input type="button" ng-click="jeuCtrl.newGame()" value="Nouvelle partie !">
+    <input class="btnewpartie" type="button" ng-click="jeuCtrl.newGame()" value="Nouvelle partie !">
 </div>
 
 <ul class="box box-score">

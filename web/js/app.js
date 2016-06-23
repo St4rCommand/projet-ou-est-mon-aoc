@@ -23,6 +23,8 @@ app.controller('JeuController', ['$scope', 'UserService', function($scope, user)
     this.reponses = [];
     this.reponse = {};
     this.etat = 0;
+    this.long = 0;
+    this.lati = 0;
 
     $scope.map = {
         center: { latitude: 46.5, longitude: 2.646806 },
@@ -34,15 +36,15 @@ app.controller('JeuController', ['$scope', 'UserService', function($scope, user)
         }
     };
 
-
     function placeMarkerAndPanTo(latLng, map) {
         var marker = new google.maps.Marker({
             position: latLng,
             map: map
         });
+        $scope.long = latLng.lng();
+        $scope.lat = latLng.lat();
         map.panTo(latLng);
     }
-
 
     this.newGame = function() {
         this.questions = questions;
@@ -51,15 +53,10 @@ app.controller('JeuController', ['$scope', 'UserService', function($scope, user)
         this.reponses = [];
         this.reponse = {};
         this.etat = 0;
-        //$('#question-type').show();
-        //$('#question-position').hide();
-        //$('#fin-partie').hide();
     };
-    
+
     this.displayMap = function() {
         this.etat = 1;
-        //$('#question-type').hide();
-        //$('#question-position').show();
     };
 
     this.score = function() {
@@ -67,14 +64,29 @@ app.controller('JeuController', ['$scope', 'UserService', function($scope, user)
     };
 
     this.verifResponse = function(){
+        var boitMange = false;
+        var carte = false;
 
         if(this.questions[this.indexQuestion].seBoit === parseInt(this.reponse.seBoit)){
-            this.reponses[this.indexQuestion] = 3;
-        } else {
-            this.reponses[this.indexQuestion] = 0;
+            boitMange = true;
         }
 
-        if (this.indexQuestion < 9) {
+        var geo = this.questions[this.indexQuestion].geo.split(",");
+        if(((geo[0]-0.1) < $scope.lat && $scope.lat < (geo[0]+0.1)) && ((geo[1]-0.1) < $scope.long && $scope.long < (geo[1]+0.1))){
+            carte = true;
+        }
+
+        if(boitMange == true && carte == true){
+            this.reponses[this.indexQuestion] = 3;
+        }else{
+            if((boitMange == false && carte == true) || (boitMange == true && carte == false)){
+                this.reponses[this.indexQuestion] = 1;
+            }else{
+                this.reponses[this.indexQuestion] = 0;
+            }
+        }
+
+        if (this.indexQuestion < 2) {
             this.nextQuestion();
         } else {
             this.endGame();
@@ -83,8 +95,6 @@ app.controller('JeuController', ['$scope', 'UserService', function($scope, user)
 
     this.nextQuestion = function() {
         this.etat = 0;
-        //$('#question-position').hide();
-        //$('#question-type').show();
         this.indexQuestion ++;
         this.reponse = {};
     };
@@ -92,8 +102,6 @@ app.controller('JeuController', ['$scope', 'UserService', function($scope, user)
     this.endGame = function() {
         this.etat = 2;
         scores.push({name: user.userName, score: this.getScore()});
-        //$('#question-position').hide();
-        //$('#fin-partie').show();
     };
 
     this.getScore = function() {
