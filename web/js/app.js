@@ -85,7 +85,17 @@ app.controller('JeuController', ['$scope', 'UserService', function($scope, user)
     };
 
     this.endGame = function() {
-        scores.push({name: user.userName, score: this.getScore()});
+        // scores.push({name: user.userName, score: this.getScore()});
+
+        gapi.client.load('scoreentityendpoint', 'v1', function() {
+            gapi.client.scoreentityendpoint.insertScoreEntity({"email": user.userName, "score" : getScore()}, 10).execute(
+                function(resp) {
+                    $scope.highScores=resp.items;
+                    $scope.$apply();
+                    console.log(resp.items);
+                });
+        }, rootApi);
+
         $('#question-position').hide();
         $('#fin-partie').show();
     };
@@ -120,20 +130,20 @@ app.controller('JeuController', ['$scope', 'UserService', function($scope, user)
     }
 }]);
 
-app.controller('ScoreController', ['$scope', function($scope){
-    this.highScores = scores;
+app.controller('ScoreController', ['$scope', '$window', function($scope, $window){
 
     this.getHighScores = function(){
-        var rootApi = 'https://1-dot-ou-est-mon-aoc.appspot.com/_ah/api/';
+        var rootApi = 'http://localhost:8080/_ah/api/';
         gapi.client.load('scoreentityendpoint', 'v1', function() {
             gapi.client.scoreentityendpoint.listScoreEntity("", 10).execute(
                 function(resp) {
-                    this.highScores=resp.items;
+                    $scope.highScores=resp.items;
                     $scope.$apply();
                 });
         }, rootApi);
     };
-    this.getHighScores();
+
+    $window.init = this.getHighScores();
 
 
 }]);

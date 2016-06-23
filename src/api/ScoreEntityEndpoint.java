@@ -7,7 +7,6 @@ import com.google.api.server.spi.config.ApiMethod;
 import com.google.api.server.spi.config.ApiNamespace;
 import com.google.api.server.spi.response.CollectionResponse;
 import com.google.appengine.api.datastore.Cursor;
-import com.google.appengine.datanucleus.query.JDOCursorHelper;
 
 import java.util.HashMap;
 import java.util.List;
@@ -45,7 +44,6 @@ public class ScoreEntityEndpoint {
 			if (cursorString != null && cursorString != "") {
 				cursor = Cursor.fromWebSafeString(cursorString);
 				HashMap<String, Object> extensionMap = new HashMap<String, Object>();
-				extensionMap.put(JDOCursorHelper.CURSOR_EXTENSION, cursor);
 				query.setExtensions(extensionMap);
 			}
 
@@ -54,7 +52,6 @@ public class ScoreEntityEndpoint {
 			}
 
 			execute = (List<ScoreEntity>) query.execute();
-			cursor = JDOCursorHelper.getCursor(execute);
 			if (cursor != null)
 				cursorString = cursor.toWebSafeString();
 

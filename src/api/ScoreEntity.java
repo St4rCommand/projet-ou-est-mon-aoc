@@ -5,8 +5,10 @@ import javax.jdo.annotations.IdentityType;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
+import javax.persistence.Entity;
 
 @PersistenceCapable(identityType=IdentityType.APPLICATION)
+@Entity
 public class ScoreEntity{
     @PrimaryKey
     @Persistent(valueStrategy=IdGeneratorStrategy.IDENTITY)
