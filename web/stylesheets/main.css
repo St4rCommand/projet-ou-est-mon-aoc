@@ -203,6 +203,9 @@ header img {
     justify-content: space-between;
 }
 
+.section-question label{
+    padding: 22px 18px;
+}
 
 .section-question div{
     width: 15%;
@@ -227,6 +230,50 @@ header img {
 }
 
 .section-question input{
+    display: none;
+}
+
+/**CARTE**/
+.question-position{
+    height: 850px;
+}
+
+.section-carte {
+    text-align: -webkit-center;
+}
+
+.section-carte .angular-google-map-container{
+    height: 580px;
+    width: 700px;
+}
+
+.section-carte label{
+    padding: 22px 30px;
+}
+
+.section-carte .bouton{
+    width: 15%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+    border-color: #650418;
+    border-width: 2px;
+    border-style: solid;
+    color: #650418;
+    border-radius: 40px;
+    margin-bottom: 30px;
+    font-weight: bold;
+}
+
+.section-carte .bouton:hover{
+    background-color: #650418;
+    color: #ffffff;
+    transition-property: background-color;
+    transition-duration: 0.1s;
+    transition-timing-function: ease;
+}
+
+.section-carte input{
     display: none;
 }
 
@@ -282,8 +329,8 @@ a.type:active {
 }
 
 /** PAGES **/
-#question-position,
-#fin-partie {
+#question-position
+{
     display: none;
 }
 
@@ -330,6 +377,29 @@ a.type:active {
     margin: 16px;
     height: 400px;
     width: 400px;
+}
+
+.btnewpartie{
+    width: 15%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+    border-color: #650418;
+    border-width: 2px;
+    border-style: solid;
+    color: #650418;
+    border-radius: 40px;
+    margin-bottom: 30px;
+    font-weight: bold;
+    background-color: #ffffff;
+}
+
+.btnewpartie:hover{
+    background-color: #650418;
+    color: #ffffff;
+    transition-property: background-color;
+    transition-duration: 0.1s;
+    transition-timing-function: ease;
 }
 
 /** POP-UP SCORE FINAL

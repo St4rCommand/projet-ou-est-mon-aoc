@@ -18,27 +18,16 @@ app.controller('JeuController', ['$scope', 'UserService', function($scope, user,
     this.scorePartie = 0;
     this.reponses = [];
     this.reponse = {};
+    this.etat = 0;
+    this.long = 0;
+    this.lati = 0;
 
     $scope.map = {
-        center: {
-            latitude: 46.5132, //Position initial de la carte
-            longitude: 0.1033
-        },
-        zoom: 11, // de 0 à 19, 0 étant la valeur de zoom la plus forte,
+        center: { latitude: 46.5, longitude: 2.646806 },
+        zoom: 6,
         events: {
-            click: function (map, eventName, originalEventArgs) {
-                var eventName = originalEventArgs[0];
-                var lat = eventName.latLng.lat();
-                var lng = eventName.latLng.lng();
-                var marker = {
-                    id: Date.now(),
-                    coords: {latitude: lat, longitude: lng}
-                };
-
-                $scope.locationAnswer = {lat: lat, lng: lng};
-                //$scope.map.markers.pop();
-                //$scope.map.markers.push(marker);
-                $scope.$apply();
+            click: function(map, e, args) {
+                placeMarkerAndPanTo(args[0].latLng, map);
             }
         }
     };
@@ -83,20 +72,10 @@ app.controller('JeuController', ['$scope', 'UserService', function($scope, user,
             position: latLng,
             map: map
         });
+        $scope.long = latLng.lng();
+        $scope.lat = latLng.lat();
         map.panTo(latLng);
     }
-
-    this.nextI = function(){
-        if(this.i != 9){
-            this.i ++;
-            this.afficher = false;
-        }
-        else{
-            this.etat = 2;
-            this.submit();
-        }
-    };
-
 
     this.newGame = function() {
         this.questions = questions;
@@ -104,14 +83,11 @@ app.controller('JeuController', ['$scope', 'UserService', function($scope, user,
         this.scorePartie = 0;
         this.reponses = [];
         this.reponse = {};
-        $('#question-type').show();
-        $('#question-position').hide();
-        $('#fin-partie').hide();
+        this.etat = 0;
     };
-    
+
     this.displayMap = function() {
-        $('#question-type').hide();
-        $('#question-position').show();
+        this.etat = 1;
     };
 
     this.score = function() {
@@ -119,14 +95,29 @@ app.controller('JeuController', ['$scope', 'UserService', function($scope, user,
     };
 
     this.verifResponse = function(){
+        var boitMange = false;
+        var carte = false;
 
         if(this.questions[this.indexQuestion].seBoit === parseInt(this.reponse.seBoit)){
-            this.reponses[this.indexQuestion] = 3;
-        } else {
-            this.reponses[this.indexQuestion] = 0;
+            boitMange = true;
         }
 
-        if (this.indexQuestion < 9) {
+        var geo = this.questions[this.indexQuestion].geo.split(",");
+        if(((geo[0]-0.1) < $scope.lat && $scope.lat < (geo[0]+0.1)) && ((geo[1]-0.1) < $scope.long && $scope.long < (geo[1]+0.1))){
+            carte = true;
+        }
+
+        if(boitMange == true && carte == true){
+            this.reponses[this.indexQuestion] = 3;
+        }else{
+            if((boitMange == false && carte == true) || (boitMange == true && carte == false)){
+                this.reponses[this.indexQuestion] = 1;
+            }else{
+                this.reponses[this.indexQuestion] = 0;
+            }
+        }
+
+        if (this.indexQuestion < 2) {
             this.nextQuestion();
         } else {
             this.endGame();
@@ -134,16 +125,14 @@ app.controller('JeuController', ['$scope', 'UserService', function($scope, user,
     };
 
     this.nextQuestion = function() {
-        $('#question-position').hide();
-        $('#question-type').show();
+        this.etat = 0;
         this.indexQuestion ++;
         this.reponse = {};
     };
 
     this.endGame = function() {
+        this.etat = 2;
         scores.push({name: user.userName, score: this.getScore()});
-        $('#question-position').hide();
-        $('#fin-partie').show();
     };
 
     this.getScore = function() {
@@ -239,5 +228,3 @@ var scores = [
     { name: 'Dragibus', score : '10'},
     { name: 'Schtroumpf', score : '5'},
 ];
-
-

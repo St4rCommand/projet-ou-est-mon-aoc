@@ -6,7 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 
-<div id="question-type" class="box full-box">
+<div id="question-type" class="box full-box" ng-if="jeuCtrl.etat==0">
     <h2 class="produit">{{jeuCtrl.questions[jeuCtrl.indexQuestion].name}}</h2>
     <h3>ça se boit ou ça se mange ?</h3>
 
@@ -16,20 +16,23 @@
     </section>
 </div>
 
-<div id="question-position" class="box full-box">
+<div  class="box full-box question-position" ng-if="jeuCtrl.etat==1">
     <h2 class="produit">{{jeuCtrl.questions[jeuCtrl.indexQuestion].name}}</h2>
     <h3>d'où ça vient ?</h3>
 
     <section id="carte" class="section-carte">
-        <ui-gmap-google-map click="clickMap" ng-click="jeuCtrl.verifResponse()" center='map.center' zoom='map.zoom' events="map.events" ></ui-gmap-google-map>
+        <ui-gmap-google-map center='map.center'  events="map.events" zoom='map.zoom' ></ui-gmap-google-map>
+        <input type="hidden" name="lat" value="{{$scope.lat}}">
+        <input type="hidden" name="long" value="{{$scope.long}}">
+        <div class="bouton"><input id="valider" class="type" ng-click="jeuCtrl.verifResponse(j)" type="radio" ><label for="valider">Valider</label></div>
     </section>
 </div>
 
-<div id="fin-partie" class="box full-box">
+<div id="fin-partie" class="box full-box" ng-if="jeuCtrl.etat==2">
     <h2>Fin de la partie !</h2>
     <p>Votre score : <span>{{jeuCtrl.getScore()}}</span></p>
 
-    <input type="button" ng-click="jeuCtrl.newGame()" value="Nouvelle partie !">
+    <input class="btnewpartie" type="button" ng-click="jeuCtrl.newGame()" value="Nouvelle partie !">
 </div>
 
 <ul class="box box-score">
