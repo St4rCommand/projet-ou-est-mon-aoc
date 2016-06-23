@@ -3,6 +3,7 @@
 <html lang="fr" ng-app="appli">
     <head>
         <title>Où est mon AOC ?</title>
+        <link rel="icon" type="image/jpg" href="images/favicon.jpg" />
         <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/stylesheets/main.css"/>
         <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/stylesheets/connexion.css"/>
 
@@ -14,6 +15,7 @@
         <script type="text/javascript" src='//maps.googleapis.com/maps/api/js?sensor=false&key=AIzaSyD02mO5LOSBSTcdse9bepTCis2dd0J6IRw'></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/js/app.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.0.0.js"></script>
+
         <meta charset="UTF-8">
         <script src="https://apis.google.com/js/platform.js"></script>
         <meta name="google-signin-client_id" content="300070851823-kfbftgpbipvqkik31m9o4rrdht6rurfj.apps.googleusercontent.com">
