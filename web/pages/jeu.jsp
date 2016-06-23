@@ -7,17 +7,17 @@
 --%>
 
 <div id="question-type" class="box full-box">
-    <h2>{{jeuCtrl.questions[jeuCtrl.indexQuestion].name}}</h2>
+    <h2 class="produit">{{jeuCtrl.questions[jeuCtrl.indexQuestion].name}}</h2>
     <h3>ça se boit ou ça se mange ?</h3>
 
     <section class="section-question">
-        <input id="question-type-liquide" class="type" ng-model="jeuCtrl.reponse.seBoit" ng-click="jeuCtrl.displayMap()" type="radio" name="question-type" value="1"><label for="question-type-liquide">Se boit</label>
-        <input id="question-type-solide" class="type" ng-model="jeuCtrl.reponse.seBoit" ng-click="jeuCtrl.displayMap()" type="radio" name="question-type" value="0"><label for="question-type-solide">Se mange</label>
+        <div><input id="question-type-liquide" class="type" ng-model="jeuCtrl.reponse.seBoit" ng-click="jeuCtrl.displayMap()" type="radio" name="question-type" value="1"><label for="question-type-liquide">Se boit</label></div>
+        <div><input id="question-type-solide" class="type" ng-model="jeuCtrl.reponse.seBoit" ng-click="jeuCtrl.displayMap()" type="radio" name="question-type" value="0"><label for="question-type-solide">Se mange</label></div>
     </section>
 </div>
 
 <div id="question-position" class="box full-box">
-    <h2>{{jeuCtrl.questions[jeuCtrl.indexQuestion].name}}</h2>
+    <h2 class="produit">{{jeuCtrl.questions[jeuCtrl.indexQuestion].name}}</h2>
     <h3>d'où ça vient ?</h3>
 
     <section id="carte" class="section-carte">
