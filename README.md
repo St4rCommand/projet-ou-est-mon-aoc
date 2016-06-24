@@ -10,13 +10,13 @@
 * Ce qui fonctionne :
   * Interface
   * Déroulement du jeu
-  * Affichage de la carte
+  * Affichage de la carte (par contre elle n'est pas fixe)
   * Connexion de l'utilisateur
 
 * Ce qu'il reste à faire :
   * Stockage des données AOC/AOP dans le datastore
-  * Enregistrement du score
-  * Appels REST pour récupérer les questions (créée mais ne fonctionne pas)
+  * Enregistrement du score grâce à un appel REST (créée mais ne fonctionne pas / actuellement enregistré "en local")
+  * Appels REST pour récupérer les questions
   * Vérifier que l'utilisateur est connecté au début de la partie
 
 ##Liens

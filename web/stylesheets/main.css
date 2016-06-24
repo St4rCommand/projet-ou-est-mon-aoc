@@ -368,15 +368,10 @@ a.type:active {
     background-color: orange;
 }
 
-#question-position {
-    height: 600px;
-}
-
-.angular-google-map,
 .angular-google-map-container {
     margin: 16px;
     height: 400px;
-    width: 400px;
+    width: 800px;
 }
 
 .btnewpartie{
@@ -400,6 +395,14 @@ a.type:active {
     transition-property: background-color;
     transition-duration: 0.1s;
     transition-timing-function: ease;
+}
+
+.tableScore{
+    width: 100%;
+}
+
+.tableScore td{
+    width: 50%;
 }
 
 /** POP-UP SCORE FINAL

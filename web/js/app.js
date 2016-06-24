@@ -32,42 +32,7 @@ app.controller('JeuController', ['$scope', 'UserService', function($scope, user,
         }
     };
 
-    var styles = [
-        {
-            featureType: "administrative",
-            elementType: "labels",
-            stylers: [
-                { visibility: "off" }
-            ]
-        },{
-            featureType: "poi",
-            elementType: "labels",
-            stylers: [
-                { visibility: "off" }
-            ]
-        },{
-            featureType: "water",
-            elementType: "labels",
-            stylers: [
-                { visibility: "off" }
-            ]
-        },{
-            featureType: "road",
-            stylers: [
-                { visibility: "off" }
-            ]
-        }
-    ];
-
-    $scope.map.options = {
-        scrollwheel: false,
-        disableDefaultUI: true,
-        disableDoubleClickZoom: true,
-        draggable: false,
-        styles: styles
-    };
-
-    $scope.clickMap = function (latLng, map) {
+    function placeMarkerAndPanTo(latLng, map) {
         var marker = new google.maps.Marker({
             position: latLng,
             map: map
@@ -117,7 +82,7 @@ app.controller('JeuController', ['$scope', 'UserService', function($scope, user,
             }
         }
 
-        if (this.indexQuestion < 2) {
+        if (this.indexQuestion < 9) {
             this.nextQuestion();
         } else {
             this.endGame();
@@ -131,8 +96,8 @@ app.controller('JeuController', ['$scope', 'UserService', function($scope, user,
     };
 
     this.endGame = function() {
-        // scores.push({name: user.userName, score: this.getScore()});
-        var rootApi = 'https://ou-est-mon-aoc.appspot.com/_ah/api';
+        scores.push({name: user.userName, email:user.userMail, score: this.getScore()});
+        /*var rootApi = 'https://ou-est-mon-aoc.appspot.com/_ah/api';
         gapi.client.load('scoreentityendpoint', 'v1', function() {
             gapi.client.scoreentityendpoint.insertScoreEntity({"name": user.userName, "email": user.userMail, "score" : getScore()}).execute(
                 function(resp) {
@@ -140,10 +105,9 @@ app.controller('JeuController', ['$scope', 'UserService', function($scope, user,
                     $scope.$apply();
                     console.log(resp.items);
                 });
-        }, rootApi);
+        }, rootApi);*/
 
-        $('#question-position').hide();
-        $('#fin-partie').show();
+        this.etat = 2;
     };
 
     this.getScore = function() {
@@ -164,7 +128,6 @@ app.controller('JeuController', ['$scope', 'UserService', function($scope, user,
     };
 
     this.afficherReponse = function (indexQuestion) {
-
         if (this.reponses[indexQuestion-1] === 3)
             return "good";
         else if (this.reponses[indexQuestion-1] === 1)
@@ -178,7 +141,7 @@ app.controller('JeuController', ['$scope', 'UserService', function($scope, user,
 
 app.controller('ScoreController', ['$scope', '$window', function($scope, $window){
 
-    this.getHighScores = function(){
+    /*this.getHighScores = function(){
         var rootApi = 'http://localhost:8080/_ah/api/explorer/';
         gapi.client.load('scoreentityendpoint', 'v1', function() {
             gapi.client.scoreentityendpoint.listScoreEntity("", 10).execute(
@@ -189,9 +152,8 @@ app.controller('ScoreController', ['$scope', '$window', function($scope, $window
         }, rootApi);
     };
 
-    $window.init = this.getHighScores();
-
-
+    $window.init = this.getHighScores();*/
+    this.highScores = scores;
 }]);
 
 app.controller('UserController', ['$scope', 'UserService', function($scope, user){
@@ -254,8 +216,9 @@ var questions = [
     { name: "Le Coulaines", seBoit: 1,  geo: "42.5,27.2" },
 ];
 
-/*var scores = [
-    { name: 'Tagada', score : '8'},
-    { name: 'Dragibus', score : '10'},
-    { name: 'Schtroumpf', score : '5'},
-];*/
+var scores = [
+    { name: 'François', email: 'françois@gmail.com', score : '5'},
+    { name: 'Romain', email: 'romain@gmail.com', score : '10'},
+    { name: 'Quentin', email: 'quentin@gmail.com', score : '20'},
+    { name: 'Morgane', email: 'morgane@gmail.com', score : '15'},
+];

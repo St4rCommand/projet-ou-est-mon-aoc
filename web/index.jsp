@@ -23,7 +23,7 @@
 
     <body ng-controller="MenuController as panel">
         <header role="banner">
-            <h1><a href="index.jsp">Où est mon AOC ? {{Tto}}</a></h1>
+            <h1><a href ng-click="panel.selectTab(1)">Où est mon AOC ? </a></h1>
 
             <div class="topbar">
                 <nav class="menu">
@@ -33,12 +33,6 @@
                         </li>
                         <li>
                             <a href ng-click="panel.selectTab(2)">Jouer</a>
-                        </li>
-                        <li>
-                            <a href ng-click="panel.selectTab(3)">Scores</a>
-                        </li>
-                        <li>
-                            <a href ng-click="panel.selectTab(4)">Projet</a>
                         </li>
                     </ul>
                 </nav>
@@ -64,12 +58,6 @@
             </div>
             <div id="page-jeu" ng-show="panel.isSelected(2)" ng-hide="!panel.isSelected(2)" ng-controller="JeuController as jeuCtrl">
                 <div ng-include="'${pageContext.request.contextPath}/pages/jeu.jsp'" ></div>
-            </div>
-            <div id="page-score" ng-show="panel.isSelected(3)">
-                <div ng-include="'${pageContext.request.contextPath}/pages/highscores.jsp'"></div>
-            </div>
-            <div id="page-projet" ng-show="panel.isSelected(4)">
-                <div ng-include="'${pageContext.request.contextPath}/pages/project.jsp'"></div>
             </div>
         </div>
 

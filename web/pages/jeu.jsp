@@ -24,7 +24,7 @@
         <ui-gmap-google-map center='map.center'  events="map.events" zoom='map.zoom' ></ui-gmap-google-map>
         <input type="hidden" name="lat" value="{{$scope.lat}}">
         <input type="hidden" name="long" value="{{$scope.long}}">
-        <div class="bouton"><input id="valider" class="type" ng-click="jeuCtrl.verifResponse(j)" type="radio" ><label for="valider">Valider</label></div>
+        <div class="bouton"><input id="valider" class="type" ng-click="jeuCtrl.verifResponse()" type="radio" ><label for="valider">Valider</label></div>
     </section>
 </div>
 

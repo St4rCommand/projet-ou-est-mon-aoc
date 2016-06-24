@@ -24,12 +24,12 @@
     </section>
 </div>
 
-<div class="box side-box">
+<div class="box side-box" ng-controller="ScoreController as scoreCtrl">
     <h3>Tableau des meilleurs scores</h3>
+    <table class="tableScore">
+        <tr ng-repeat='scores in scoreCtrl.highScores'>
+            <td>{{scores.name}}</td>
+            <td>{{scores.score}}</td>
+        </tr>
+    </table>
 </div>
-
-<%--<div class="background">
-    <div class="box score-final">
-        <h1>Votre score :</h1>
-    </div>
-</div>--%>
